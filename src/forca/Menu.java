@@ -15,6 +15,7 @@ import java.util.Scanner;
  */
 public class Menu {
     public static void loadMenu() throws IOException{
+        String path = System.getProperty("user.dir")+File.separator+"Repo"+File.separator;
         Scanner s = new Scanner(System.in);
         Scanner s1 = new Scanner(System.in);
         menuInicial();
@@ -34,6 +35,15 @@ public class Menu {
                 System.out.println(count+" - "+arquivo.getName());
                 count++;
             }
+            resp = s.nextByte();
+            while(resp>count-1){
+                System.err.println("Valor errado");
+                resp = s.nextByte();
+            }
+            resp--;
+            path +=arquivos[resp].getName();
+            Palavras.chooseWord(Palavras.loadFile(path));
+            
             
         }
     }
